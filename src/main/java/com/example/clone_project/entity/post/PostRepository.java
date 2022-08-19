@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    @Query("select p from Post p join fetch Member m where m.username = :username")
+    @Query("select p from Post p join fetch p.member m where m.username = :username")
     List<Post> findByUsername(@Param("username") String username);
 }
