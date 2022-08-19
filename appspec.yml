@@ -24,4 +24,4 @@ hooks:
     - location: scripts/gh_deploy.sh
       timeout: 60
       # runas를 입력해주지 않으면 간혹 permission error가 날 수도
-      runas: root
+      runas: ubuntu
