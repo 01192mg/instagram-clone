@@ -27,9 +27,13 @@ public class Member extends Timestamped {
 
     private String password;
 
+    private String profileImageUrl;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Post> posts;
 
-
+    public void updateProfile(String nickname, String profileImageUrl) {
+        this.nickname = nickname;
+        this.profileImageUrl = profileImageUrl;
+    }
 }
