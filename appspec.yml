@@ -13,6 +13,6 @@ permissions:
 
 hooks:
   ApplicationStart:
-    - location: scripts/hayuen_deploy.sh
+    - location: scripts/hayuen-code-deploy.sh
       timeout: 60
       runas: root
