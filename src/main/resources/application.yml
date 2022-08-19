@@ -1,0 +1,45 @@
+
+
+server:
+  port: 8080
+
+spring:
+  servlet: # max file size
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher # Spring boot 2.6 ????  spring.mvc.pathmatch.matching-strategy ?? ant_path_matcher?? path_pattern_parser? ??
+  main:
+    allow-circular-references: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${{ secrets.DB }}:3306/cloneProject?serverTimezone=Asia/Seoul
+    username: ${{ secrets.AWS_ACCESS_KEY }}
+    password: ${{ secrets.AWS_SECRET_KEY }}
+
+  jpa:
+    hibernate:
+      ddl-auto: create #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+    generate-ddl: true # ddl-auto ??? ???? ??
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
+
+  output: # output ??? ???
+    ansi:
+      enabled: always
+
+
+
+
+#logging:
+#  level:
+#    '[org.apache.coyote.http11]': DEBUG
+#    '[org.springframework.web]': DEBUG
+#    '[org.hibernate]': DEBUG
