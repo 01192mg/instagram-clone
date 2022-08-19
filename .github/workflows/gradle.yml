@@ -39,6 +39,7 @@ jobs:
         run: chmod +x ./gradlew
         shell: bash
 
+
         # [2]
       - name: Build with Gradle
         run: ./gradlew build -x test
@@ -69,3 +70,4 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --deployment-group-name hayuen-server \
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+        
