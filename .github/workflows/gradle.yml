@@ -13,7 +13,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -38,7 +38,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
-
 
         # [2]
       - name: Build with Gradle
