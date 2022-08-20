@@ -27,7 +27,9 @@ public class S3UploadService {
     public String uploadImage(String encodedFile) {
         byte[] bytes = decodeBase64(encodedFile);
         File file = convertToFile(bytes);
-        return uploadToS3(file);
+        String fileUrl = uploadToS3(file);
+        removeTempFile(file);
+        return fileUrl;
     }
 
     // 로컬에 파일 업로드 하기
@@ -46,6 +48,13 @@ public class S3UploadService {
         String fileName =  "images/" + UUID.randomUUID();   // S3에 저장된 파일 이름
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
+    }
+
+    // 로컬에 저장된 파일 지우기
+    private void removeTempFile(File file) {
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
     // base64로 decode
