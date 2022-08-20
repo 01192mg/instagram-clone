@@ -25,7 +25,7 @@ public class Post extends Timestamped {
     private String content;
 
     @JoinColumn(name = "member_id", nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
