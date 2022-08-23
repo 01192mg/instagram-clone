@@ -4,7 +4,9 @@ import com.example.clone_project.entity.Post;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Getter
@@ -21,7 +23,7 @@ public class PostResponseDto {
         this.id = post.getId();
         this.content = post.getContent();
         this.author = post.getMember().getUsername();
-        this.comments = post.getComments().stream().map(CommentResponseDto::new).collect(Collectors.toList());
+        this.comments = Optional.ofNullable(post.getComments()).orElseGet(Collections::emptyList).stream().map(CommentResponseDto::new).collect(Collectors.toList());
         this.imageUrl = post.getImageUrl();
         this.modifiedAt = post.getModifiedAt();
     }

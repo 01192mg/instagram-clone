@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -25,35 +26,35 @@ public class PostService {
 
     }
 
-    public List<Post> getAllPosts() {
+    public List<PostResponseDto> getAllPosts() {
         List<Post> posts = postRepository.findAllByOrderByModifiedAtDesc();
-        return posts;
+        return posts.stream().map(PostResponseDto::new).collect(Collectors.toList());
     }
 
-    public Post getPosts(Long postId){
+    public PostResponseDto getPosts(Long postId){
         Post post = postRepository.findAllById(postId);
-        return post;
+        return new PostResponseDto(post);
     }
 
-    public List<Post> searchPosts(PostRequestDto content){
+    public List<PostResponseDto> searchPosts(PostRequestDto content){
         List<Post> posts = postRepository.findAllByContentContaining(content.getContent());
-        return posts;
+        return posts.stream().map(PostResponseDto::new).collect(Collectors.toList());
     }
 
 
     @Transactional
     public PostResponseDto updatePosts(Member member, Long postId, PostRequestDto postRequestDto) {
         Post post = postRepository.findById(postId).orElseThrow();
-        if(!member.equals(post.getMember())) {
+        if(!member.getUsername().equals(post.getMember().getUsername())) {
             throw new IllegalArgumentException("사용자 권한이 없습니다.");
         }
         post.update(postRequestDto);
-        return new PostResponseDto(postRepository.save(post));
+        return new PostResponseDto(post);
     }
     @Transactional
     public void deletePosts(Member member, Long postId) {
         Post post = postRepository.findById(postId).orElseThrow();
-        if(!member.equals(post.getMember())){
+        if(!member.getUsername().equals(post.getMember().getUsername())){
             throw new IllegalArgumentException("사용자 권한이 없습니다.");
         }
         postRepository.delete(post);
