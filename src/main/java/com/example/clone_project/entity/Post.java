@@ -1,11 +1,13 @@
 package com.example.clone_project.entity;
 
+import com.example.clone_project.dto.request.PostRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.lang.reflect.Member;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,5 +30,12 @@ public class Post extends Timestamped {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    @Column(nullable = false)
+    private String imageUrl;
 
+
+    public void update(PostRequestDto postRequestDto) {
+        this.content = postRequestDto.getContent();
+        this.imageUrl = postRequestDto.getFile();
+    }
 }
