@@ -1,6 +1,6 @@
 package com.example.clone_project.controller;
 
-import com.example.clone_project.dto.ResponseDto;
+import com.example.clone_project.dto.response.ResponseDto;
 import com.example.clone_project.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

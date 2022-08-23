@@ -1,6 +1,6 @@
-package com.example.clone_project.dto;
+package com.example.clone_project.dto.response;
 
-import com.example.clone_project.entity.post.Post;
+import com.example.clone_project.entity.Post;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

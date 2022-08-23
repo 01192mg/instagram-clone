@@ -1,8 +1,5 @@
-package com.example.clone_project.entity.post;
+package com.example.clone_project.entity;
 
-import com.example.clone_project.entity.comment.Comment;
-import com.example.clone_project.entity.common.Timestamped;
-import com.example.clone_project.entity.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

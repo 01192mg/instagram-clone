@@ -1,4 +1,4 @@
-package com.example.clone_project.entity.common;
+package com.example.clone_project.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
