@@ -49,14 +49,10 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
-                .formLogin().disable()
-                .httpBasic().disable()
                 .authorizeRequests()
-                .antMatchers("/api/members/info").authenticated()
                 .antMatchers("/api/members/**").permitAll()
                 .antMatchers("/api/posts/**").permitAll()
                 .antMatchers("/api/comments/**").permitAll()
-
                 .anyRequest().authenticated()
 
                 .and()
