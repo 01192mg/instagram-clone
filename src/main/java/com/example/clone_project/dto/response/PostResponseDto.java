@@ -13,6 +13,8 @@ public class PostResponseDto {
     private final String content;
     private final String author;
     private final List<CommentResponseDto> comments;
+
+    private final String imageUrl;
     private final LocalDateTime modifiedAt;
 
     public PostResponseDto(Post post) {
@@ -20,6 +22,7 @@ public class PostResponseDto {
         this.content = post.getContent();
         this.author = post.getMember().getUsername();
         this.comments = post.getComments().stream().map(CommentResponseDto::new).collect(Collectors.toList());
+        this.imageUrl = post.getImageUrl();
         this.modifiedAt = post.getModifiedAt();
     }
 }
