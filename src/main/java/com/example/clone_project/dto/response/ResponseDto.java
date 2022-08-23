@@ -1,4 +1,4 @@
-package com.example.clone_project.dto;
+package com.example.clone_project.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

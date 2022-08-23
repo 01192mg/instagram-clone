@@ -1,8 +1,8 @@
 package com.example.clone_project.service;
 
-import com.example.clone_project.dto.PostResponseDto;
-import com.example.clone_project.dto.ResponseDto;
-import com.example.clone_project.entity.post.PostRepository;
+import com.example.clone_project.dto.response.PostResponseDto;
+import com.example.clone_project.dto.response.ResponseDto;
+import com.example.clone_project.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
