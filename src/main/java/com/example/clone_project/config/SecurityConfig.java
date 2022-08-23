@@ -8,6 +8,7 @@ import com.example.clone_project.security.MemberDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -50,8 +51,10 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/members/**").permitAll()
-                .antMatchers("/api/posts/**").permitAll()
+                .antMatchers("/api/members/signup").permitAll()
+                .antMatchers("/api/members/login").permitAll()
+                .antMatchers("/api/members/check").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
                 .antMatchers("/api/comments/**").permitAll()
                 .anyRequest().authenticated()
 
