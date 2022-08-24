@@ -9,6 +9,7 @@ import com.example.clone_project.entity.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +23,8 @@ public class LikesService {
     private final PostRepository postRepository;
 
     @Transactional
-    public void likesToPost(Long postId){ // 게시글에 좋아요
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    public void likesToPost(Long postId, UserDetails userDetails){ // 게시글에 좋아요
+        String username = userDetails.getUsername();
         Member member = memberRepository.getMembersByNickname(username);
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 게시글입니다"));
