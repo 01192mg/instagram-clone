@@ -1,14 +1,13 @@
 package com.example.clone_project.service;
 
-import com.example.clone_project.entity.likes.Likes;
-import com.example.clone_project.entity.likes.LikesRepository;
-import com.example.clone_project.entity.member.Member;
-import com.example.clone_project.entity.member.MemberRepository;
-import com.example.clone_project.entity.post.Post;
-import com.example.clone_project.entity.post.PostRepository;
+import com.example.clone_project.entity.Member;
+import com.example.clone_project.entity.Post;
+import com.example.clone_project.entity.Likes;
+import com.example.clone_project.repository.LikesRepository;
+import com.example.clone_project.repository.MemberRepository;
+import com.example.clone_project.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +24,8 @@ public class LikesService {
     @Transactional
     public void likesToPost(Long postId, UserDetails userDetails){ // 게시글에 좋아요
         String username = userDetails.getUsername();
-        Member member = memberRepository.getMembersByNickname(username);
+        Member member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다"));;
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 게시글입니다"));
         if(!likesRepository.existsByMemberAndPost(member,post)){

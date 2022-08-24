@@ -1,4 +1,4 @@
-package com.example.clone_project.dto.comment;
+package com.example.clone_project.dto.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

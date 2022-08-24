@@ -1,7 +1,4 @@
-package com.example.clone_project.entity.likes;
-
-import com.example.clone_project.entity.common.Timestamped;
-import com.example.clone_project.entity.post.Post;
+package com.example.clone_project.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;

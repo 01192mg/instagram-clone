@@ -1,12 +1,12 @@
 package com.example.clone_project.service;
 
-import com.example.clone_project.dto.comment.CommentRequestDto;
-import com.example.clone_project.entity.comment.Comment;
-import com.example.clone_project.entity.comment.CommentRepository;
-import com.example.clone_project.entity.member.Member;
-import com.example.clone_project.entity.member.MemberRepository;
-import com.example.clone_project.entity.post.Post;
-import com.example.clone_project.entity.post.PostRepository;
+import com.example.clone_project.dto.request.CommentRequestDto;
+import com.example.clone_project.entity.Comment;
+import com.example.clone_project.entity.Member;
+import com.example.clone_project.entity.Post;
+import com.example.clone_project.repository.CommentRepository;
+import com.example.clone_project.repository.MemberRepository;
+import com.example.clone_project.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class CommentService {
      public ResponseEntity<?> createComment(Long postId, CommentRequestDto commentRequestDto, UserDetails userDetails) {
          Post post = postRepository.findById(postId)
                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 게시글입니다"));
-         Member member = memberRepository.getMemberByUsername(userDetails.getUsername())
+         Member member = memberRepository.findByUsername(userDetails.getUsername())
                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "존재하지 않는 회원입니다."));
          commentRepository.save(Comment.builder()
                  .content(commentRequestDto.getContent())

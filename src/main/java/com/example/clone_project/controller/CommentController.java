@@ -1,7 +1,6 @@
 package com.example.clone_project.controller;
 
-import com.example.clone_project.dto.comment.CommentRequestDto;
-import com.example.clone_project.dto.comment.CommentResponseDto;
+import com.example.clone_project.dto.request.CommentRequestDto;
 import com.example.clone_project.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

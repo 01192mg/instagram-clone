@@ -1,7 +1,7 @@
-package com.example.clone_project.entity.likes;
+package com.example.clone_project.entity;
 
-import com.example.clone_project.entity.member.Member;
-import com.example.clone_project.entity.post.Post;
+import com.example.clone_project.entity.Member;
+import com.example.clone_project.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
