@@ -12,10 +12,14 @@ public class CommentResponseDto {
     public String author;
     public LocalDateTime modifiedAt;
 
-    public CommentResponseDto(Comment comment) {
-        this.id = comment.getId();
-        this.content = comment.getContent();
-        this.author = comment.getMember().getUsername();
-        this.modifiedAt = comment.getModifiedAt();
+    public CommentResponseDto(Long id, String content, String author, LocalDateTime modifiedAt) {
+        this.id = id;
+        this.content = content;
+        this.author = author;
+        this.modifiedAt = modifiedAt;
+    }
+
+    public static CommentResponseDto fromEntity(Comment comment) {
+        return new CommentResponseDto(comment.getId(), comment.getContent(), comment.getMember().getNickname(), comment.getModifiedAt());
     }
 }
