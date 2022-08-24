@@ -1,5 +1,6 @@
 package com.example.clone_project.entity.comment;
 
+import com.example.clone_project.dto.comment.CommentRequestDto;
 import com.example.clone_project.entity.common.Timestamped;
 import com.example.clone_project.entity.member.Member;
 import com.example.clone_project.entity.post.Post;
@@ -32,4 +33,7 @@ public class Comment extends Timestamped {
     @ManyToOne
     private Member member;
 
+
+    public void updateComment(CommentRequestDto commentRequestDto) {
+    }
 }
