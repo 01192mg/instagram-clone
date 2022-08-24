@@ -23,7 +23,7 @@ public class PostResponseDto {
         this.id = post.getId();
         this.content = post.getContent();
         this.author = post.getMember().getUsername();
-        this.comments = Optional.ofNullable(post.getComments()).orElseGet(Collections::emptyList).stream().map(CommentResponseDto::new).collect(Collectors.toList());
+        this.comments = Optional.ofNullable(post.getComments()).orElseGet(Collections::emptyList).stream().map(CommentResponseDto::fromEntity).collect(Collectors.toList());
         this.imageUrl = post.getImageUrl();
         this.modifiedAt = post.getModifiedAt();
     }

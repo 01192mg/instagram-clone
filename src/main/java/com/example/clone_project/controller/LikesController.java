@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LikesController {
     private final LikesService likesService;
 
-    @PostMapping("/api/posts/like/{postId}}") // 게시글 좋아요
+    @PostMapping("/api/posts/like/{postId}") // 게시글 좋아요
     public void likesToPost(@PathVariable Long postId, @AuthenticationPrincipal UserDetails userDetails){
         likesService.likesToPost(postId, userDetails);
     }
