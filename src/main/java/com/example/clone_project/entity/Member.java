@@ -1,11 +1,10 @@
-package com.example.clone_project.entity.member;
+package com.example.clone_project.entity;
 
-import com.example.clone_project.entity.common.Timestamped;
-import com.example.clone_project.entity.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,9 +26,17 @@ public class Member extends Timestamped {
 
     private String password;
 
+    private String profileImageUrl;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Post> posts;
 
+    public void updateProfile(String nickname, String profileImageUrl) {
+        this.nickname = nickname;
+        this.profileImageUrl = profileImageUrl;
+    }
 
+    public boolean validatePassword(PasswordEncoder passwordEncoder, String password) {
+        return passwordEncoder.matches(password, this.password);
+    }
 }

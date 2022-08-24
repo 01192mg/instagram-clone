@@ -1,14 +1,13 @@
-package com.example.clone_project.entity.post;
+package com.example.clone_project.entity;
 
-import com.example.clone_project.entity.comment.Comment;
-import com.example.clone_project.entity.common.Timestamped;
-import com.example.clone_project.entity.member.Member;
+import com.example.clone_project.dto.request.PostRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,11 +24,18 @@ public class Post extends Timestamped {
     private String content;
 
     @JoinColumn(name = "member_id", nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
+
+    @Column(nullable = false)
+    private String imageUrl;
 
 
+    public void update(PostRequestDto postRequestDto) {
+        this.content = postRequestDto.getContent();
+        this.imageUrl = postRequestDto.getFile();
+    }
 }
