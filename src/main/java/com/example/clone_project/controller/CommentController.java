@@ -18,15 +18,20 @@ public class CommentController {
     public ResponseDto<?> createComment(@PathVariable Long postId, @RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetails userDetails) {
         return commentService.createComment(postId, requestDto, userDetails);
     }
+
     @PutMapping("/api/comments/{commentId}") // 댓글 수정
     public ResponseDto<?> updateComment(@PathVariable Long commentId,
-                                                @RequestBody CommentRequestDto commentRequestDto){
+                                        @RequestBody CommentRequestDto commentRequestDto) {
         return commentService.updateComment(commentId, commentRequestDto);
     }
 
     @DeleteMapping("/api/comments/{commentId}") // 댓글 삭제
-    public ResponseDto<?> deleteComment(@PathVariable Long commentId){
+    public ResponseDto<?> deleteComment(@PathVariable Long commentId) {
         return commentService.deleteComment(commentId);
     }
 
+    @GetMapping("/api/comments/{postId}")
+    public ResponseDto<?> getComment(@PathVariable Long postId) {
+        return commentService.findAll(postId);
+    }
 }
