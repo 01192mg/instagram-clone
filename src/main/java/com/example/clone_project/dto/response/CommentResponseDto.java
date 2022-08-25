@@ -11,15 +11,17 @@ public class CommentResponseDto {
     public String content;
     public String author;
     public LocalDateTime modifiedAt;
+    public String profileImg;
 
-    public CommentResponseDto(Long id, String content, String author, LocalDateTime modifiedAt) {
+    public CommentResponseDto(Long id, String content, String author, LocalDateTime modifiedAt, String profileImg) {
         this.id = id;
         this.content = content;
         this.author = author;
         this.modifiedAt = modifiedAt;
+        this.profileImg = profileImg;
     }
 
     public static CommentResponseDto fromEntity(Comment comment) {
-        return new CommentResponseDto(comment.getId(), comment.getContent(), comment.getMember().getNickname(), comment.getModifiedAt());
+        return new CommentResponseDto(comment.getId(), comment.getContent(), comment.getMember().getNickname(), comment.getModifiedAt(), comment.getMember().getProfileImageUrl());
     }
 }

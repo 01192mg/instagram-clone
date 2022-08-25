@@ -18,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -140,4 +142,8 @@ public class MemberService {
     return ResponseDto.success(memberResponseDto);
   }
 
+  public ResponseDto<?> findAll() {
+    List<MemberResponseDto> collect = memberRepository.findAll().stream().map(MemberResponseDto::new).collect(Collectors.toList());
+    return ResponseDto.success(collect);
+  }
 }

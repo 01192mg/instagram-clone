@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RestController
 public class MemberController {
@@ -41,5 +42,10 @@ public class MemberController {
     @GetMapping("/api/members/info")
     public ResponseDto<?> LoginInfo(@AuthenticationPrincipal UserDetails userInfo) {
         return memberService.LoginInfo(userInfo);
+    }
+
+    @GetMapping("/api/members")
+    public ResponseDto<?> findAll() {
+        return memberService.findAll();
     }
 }
