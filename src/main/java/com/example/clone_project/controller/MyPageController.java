@@ -1,11 +1,14 @@
 package com.example.clone_project.controller;
 
+import com.example.clone_project.dto.request.ProfileUpdateRequestDto;
 import com.example.clone_project.dto.response.ResponseDto;
 import com.example.clone_project.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -19,4 +22,8 @@ public class MyPageController {
         return myPageService.myPosts(userDetails);
     }
 
+    @PutMapping("/api/mypage/profile")
+    public ResponseDto<?> updateProfile(@RequestBody ProfileUpdateRequestDto updateDto, @AuthenticationPrincipal UserDetails userDetails) {
+        return myPageService.updateProfile(updateDto, userDetails);
+    }
 }
