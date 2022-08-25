@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .antMatchers("/api/members/signup").permitAll()
                 .antMatchers("/api/members/login").permitAll()
                 .antMatchers("/api/members/check").permitAll()
+                .antMatchers("/api/members").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
                 .antMatchers("/api/comments/**").permitAll()
                 .anyRequest().authenticated()

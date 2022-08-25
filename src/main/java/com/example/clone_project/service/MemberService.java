@@ -18,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -44,7 +46,7 @@ public class MemberService {
             .username(requestDto.getUsername())
             .nickname(requestDto.getNickname())
             .password(passwordEncoder.encode(requestDto.getPassword()))
-            .profileImageUrl("https://play-lh.googleusercontent.com/38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo=w240-h480-rw")
+            .profileImageUrl("https://yozm.wishket.com/static/img/default_avatar.png")
             .build();
     memberRepository.save(member);
     return ResponseDto.success(new MemberResponseDto(member));
@@ -140,4 +142,8 @@ public class MemberService {
     return ResponseDto.success(memberResponseDto);
   }
 
+  public ResponseDto<?> findAll() {
+    List<MemberResponseDto> collect = memberRepository.findAll().stream().map(MemberResponseDto::new).collect(Collectors.toList());
+    return ResponseDto.success(collect);
+  }
 }
