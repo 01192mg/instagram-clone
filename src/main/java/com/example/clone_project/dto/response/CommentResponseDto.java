@@ -12,15 +12,15 @@ public class CommentResponseDto {
     public String author;
     public String authorNickname;
     public LocalDateTime modifiedAt;
-    public String profileImg;
+    public String profileImage;
 
-    public CommentResponseDto(Long id, String content, String author,String authorNickname ,LocalDateTime modifiedAt, String profileImg) {
+    public CommentResponseDto(Long id, String content, String author,String authorNickname ,LocalDateTime modifiedAt, String profileImage) {
         this.id = id;
         this.content = content;
         this.author = author;
         this.authorNickname = authorNickname;
         this.modifiedAt = modifiedAt;
-        this.profileImg = profileImg;
+        this.profileImage = profileImage;
     }
 
     public static CommentResponseDto fromEntity(Comment comment) {

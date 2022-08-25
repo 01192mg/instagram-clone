@@ -16,7 +16,7 @@ public class PostResponseDto {
     private final String imageUrl;
     private final String author;
     private final String authorNickname;
-    private final String authorProfileImage;
+    private final String profileImage;
     private final List<CommentResponseDto> comments;
 
     private final LocalDateTime modifiedAt;
@@ -26,7 +26,7 @@ public class PostResponseDto {
         this.content = post.getContent();
         this.author = post.getMember().getUsername();
         this.authorNickname = post.getMember().getNickname();
-        this.authorProfileImage = post.getMember().getProfileImageUrl();
+        this.profileImage = post.getMember().getProfileImageUrl();
         this.comments = Optional.ofNullable(post.getComments()).orElseGet(Collections::emptyList).stream().map(CommentResponseDto::fromEntity).collect(Collectors.toList());
         this.imageUrl = post.getImageUrl();
         this.modifiedAt = post.getModifiedAt();
