@@ -46,7 +46,7 @@ public class MemberService {
             .username(requestDto.getUsername())
             .nickname(requestDto.getNickname())
             .password(passwordEncoder.encode(requestDto.getPassword()))
-            .profileImageUrl("https://play-lh.googleusercontent.com/38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo=w240-h480-rw")
+            .profileImageUrl("https://yozm.wishket.com/static/img/default_avatar.png")
             .build();
     memberRepository.save(member);
     return ResponseDto.success(new MemberResponseDto(member));
