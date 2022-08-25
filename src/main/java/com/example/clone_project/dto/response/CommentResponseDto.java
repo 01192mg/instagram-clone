@@ -10,18 +10,20 @@ public class CommentResponseDto {
     public Long id;
     public String content;
     public String author;
+    public String authorNickname;
     public LocalDateTime modifiedAt;
     public String profileImg;
 
-    public CommentResponseDto(Long id, String content, String author, LocalDateTime modifiedAt, String profileImg) {
+    public CommentResponseDto(Long id, String content, String author,String authorNickname ,LocalDateTime modifiedAt, String profileImg) {
         this.id = id;
         this.content = content;
         this.author = author;
+        this.authorNickname = authorNickname;
         this.modifiedAt = modifiedAt;
         this.profileImg = profileImg;
     }
 
     public static CommentResponseDto fromEntity(Comment comment) {
-        return new CommentResponseDto(comment.getId(), comment.getContent(), comment.getMember().getNickname(), comment.getModifiedAt(), comment.getMember().getProfileImageUrl());
+        return new CommentResponseDto(comment.getId(), comment.getContent(),comment.getMember().getUsername() ,comment.getMember().getNickname(), comment.getModifiedAt(), comment.getMember().getProfileImageUrl());
     }
 }
